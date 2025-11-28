@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-    Pressable,
     StyleSheet,
     Text,
+    TouchableOpacity,
     View,
 } from 'react-native';
 
@@ -238,9 +238,9 @@ export default function MathGame() {
             {allUsed ? '🎉 Amazing! You used all numbers!' : 'No more moves available'}
           </Text>
 
-          <Pressable style={styles.playAgainButton} onPress={resetGame}>
+          <TouchableOpacity style={styles.playAgainButton} onPress={resetGame} activeOpacity={0.7}>
             <Text style={styles.playAgainButtonText}>Play Again</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -275,9 +275,10 @@ export default function MathGame() {
                 const operation = getOperationForCell(rowIndex, colIndex);
 
                 return (
-                  <Pressable
+                  <TouchableOpacity
                     key={cell.id}
                     onPress={() => handleCellPress(rowIndex, colIndex)}
+                    activeOpacity={0.7}
                     style={[
                       styles.cell,
                       cell.used && styles.cellUsed,
@@ -294,16 +295,16 @@ export default function MathGame() {
                     >
                       {cell.value}
                     </Text>
-                  </Pressable>
+                  </TouchableOpacity>
                 );
               })}
             </View>
           ))}
         </View>
 
-        <Pressable style={styles.resetButton} onPress={resetGame}>
+        <TouchableOpacity style={styles.resetButton} onPress={resetGame} activeOpacity={0.7}>
           <Text style={styles.resetButtonText}>New Game</Text>
-        </Pressable>
+        </TouchableOpacity>
 
         <View style={styles.howToPlay}>
           <Text style={styles.howToPlayTitle}>How to Play:</Text>
