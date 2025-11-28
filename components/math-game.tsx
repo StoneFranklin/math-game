@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
+    Platform,
+    Pressable,
     StyleSheet,
     Text,
-    TouchableOpacity,
     View,
 } from 'react-native';
 
@@ -238,9 +239,9 @@ export default function MathGame() {
             {allUsed ? '🎉 Amazing! You used all numbers!' : 'No more moves available'}
           </Text>
 
-          <TouchableOpacity style={styles.playAgainButton} onPress={resetGame} activeOpacity={0.7}>
+          <Pressable style={styles.playAgainButton} onPress={resetGame}>
             <Text style={styles.playAgainButtonText}>Play Again</Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </View>
     );
@@ -256,15 +257,6 @@ export default function MathGame() {
           </Text>
         </View>
 
-        <View style={styles.instructions}>
-          <Text style={styles.instructionText}>
-            Tap a number to start, then tap an adjacent number to combine
-          </Text>
-          <Text style={styles.instructionText}>
-            ➡️⬆️ Add | ⬅️⬇️ Subtract | ↗️↘️ Multiply | ↖️↙️ Divide
-          </Text>
-        </View>
-
         <View style={styles.grid}>
           {grid.map((row, rowIndex) => (
             <View key={rowIndex} style={styles.row}>
@@ -275,10 +267,9 @@ export default function MathGame() {
                 const operation = getOperationForCell(rowIndex, colIndex);
 
                 return (
-                  <TouchableOpacity
+                  <Pressable
                     key={cell.id}
                     onPress={() => handleCellPress(rowIndex, colIndex)}
-                    activeOpacity={0.7}
                     style={[
                       styles.cell,
                       cell.used && styles.cellUsed,
@@ -295,26 +286,16 @@ export default function MathGame() {
                     >
                       {cell.value}
                     </Text>
-                  </TouchableOpacity>
+                  </Pressable>
                 );
               })}
             </View>
           ))}
         </View>
 
-        <TouchableOpacity style={styles.resetButton} onPress={resetGame} activeOpacity={0.7}>
+        <Pressable style={styles.resetButton} onPress={resetGame}>
           <Text style={styles.resetButtonText}>New Game</Text>
-        </TouchableOpacity>
-
-        <View style={styles.howToPlay}>
-          <Text style={styles.howToPlayTitle}>How to Play:</Text>
-          <Text style={styles.howToPlayText}>
-            1. Tap any number to start{'\n'}
-            2. Tap an adjacent number to combine{'\n'}
-            3. Each number can only be used once{'\n'}
-            4. Try to reach the highest number possible!
-          </Text>
-        </View>
+        </Pressable>
       </View>
     </View>
   );
@@ -345,15 +326,6 @@ const styles = StyleSheet.create({
     color: '#aaa',
     marginVertical: 2,
   },
-  instructions: {
-    marginBottom: 15,
-    paddingHorizontal: 10,
-  },
-  instructionText: {
-    fontSize: 14,
-    color: '#aaa',
-    textAlign: 'center',
-  },
   grid: {
     aspectRatio: 1,
     width: '100%',
@@ -375,7 +347,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
     borderColor: '#555',
-  },
+    cursor: 'pointer',
+  } as any,
   cellUsed: {
     backgroundColor: '#3a3a3a',
     borderColor: '#444',
@@ -407,29 +380,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 12,
     borderRadius: 25,
-  },
+    cursor: 'pointer',
+  } as any,
   resetButtonText: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
-  },
-  howToPlay: {
-    marginTop: 20,
-    padding: 15,
-    backgroundColor: 'rgba(74, 144, 226, 0.15)',
-    borderRadius: 10,
-    maxWidth: 400,
-  },
-  howToPlayTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#e0e0e0',
-    marginBottom: 8,
-  },
-  howToPlayText: {
-    fontSize: 14,
-    color: '#aaa',
-    lineHeight: 20,
   },
   // Game Over Screen Styles
   gameOverContainer: {
@@ -494,7 +450,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     paddingVertical: 18,
     borderRadius: 30,
-  },
+    cursor: 'pointer',
+  } as any,
   playAgainButtonText: {
     color: '#fff',
     fontSize: 22,
