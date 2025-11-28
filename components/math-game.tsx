@@ -295,6 +295,17 @@ export default function MathGame() {
         <Pressable style={styles.resetButton} onPress={resetGame}>
           <Text style={styles.resetButtonText}>New Game</Text>
         </Pressable>
+
+        <View style={styles.legend}>
+          <View style={styles.legendRow}>
+            <Text style={styles.legendItem}>➡️ ⬆️ Add</Text>
+            <Text style={styles.legendItem}>⬅️ ⬇️ Subtract</Text>
+          </View>
+          <View style={styles.legendRow}>
+            <Text style={styles.legendItem}>↗️ ↘️ Multiply</Text>
+            <Text style={styles.legendItem}>↖️ ↙️ Divide</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -385,6 +396,20 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  legend: {
+    marginTop: 20,
+    width: '100%',
+    maxWidth: 400,
+  },
+  legendRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: 4,
+  },
+  legendItem: {
+    fontSize: 14,
+    color: '#aaa',
   },
   // Game Over Screen Styles
   gameOverContainer: {
