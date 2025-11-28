@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-    Platform,
     Pressable,
     StyleSheet,
     Text,
-    View,
+    View
 } from 'react-native';
 
 type Cell = {
